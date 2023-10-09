@@ -1,0 +1,8 @@
+import rugby.*
+import wollok.game.*
+
+program juegos {
+
+	juego.configurar()
+	game.start()
+} 
