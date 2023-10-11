@@ -24,23 +24,25 @@ object juego{
 		var final = [new Position(x=0,y=1),new Position(x=1,y=1),new Position(x=2,y=1),new Position(x=3,y=1),new Position(x=4,y=1),new Position(x=5,y=1)].map{p=> self.dibujar(new Final(position = p))}
 		game.addVisual(pjuego)
 		game.addVisual(player)
-		game.onTick(10000,"",{game.addVisual(enemigo1)})
+		game.schedule(1000,{game.addVisual(enemigo1)})
+		/*game.onTick(10000,"",{enemigo1.iniciar()})
 		game.onTick(5000,"",{game.addVisual(enemigo2)})
 		game.onTick(7100,"",{game.addVisual(enemigo3)})
 		game.onTick(1800,"",{game.addVisual(enemigo4)})
 		game.onTick(9000,"",{game.addVisual(enemigo5)})
 		game.onTick(15000,"",{game.addVisual(enemigo6)})
 		game.onTick(20000,"",{game.addVisual(enemigo7)})
-		game.onTick(5000,"",{game.addVisual(enemigo8)})
+		game.onTick(5000,"",{game.addVisual(enemigo8)})*/
 		game.onCollideDo(player,{ obstaculo => obstaculo.chocar()})
 		game.onTick(2000, "movimiento", { enemigo1.moverse() })
-		game.onTick(1000, "movimiento", { enemigo2.moverse() })
+		/*game.onTick(1000, "movimiento", { enemigo2.moverse() })
 		game.onTick(1500, "movimiento", { enemigo3.moverse() })
 		game.onTick(2500, "movimiento", { enemigo4.moverse() })
 		game.onTick(2500, "movimiento", { enemigo5.moverse() })
 		game.onTick(2500, "movimiento", { enemigo6.moverse() })	
 		game.onTick(2500, "movimiento", { enemigo7.moverse() })
-		game.onTick(2500, "movimiento", { enemigo8.moverse() })
+		game.onTick(2500, "movimiento", { enemigo8.moverse() })*/
+		self.ejecutarPJ()
 
 		player.iniciar()
 
@@ -50,6 +52,12 @@ object juego{
 		keyboard.down().onPressDo{player.bajar()}
 		keyboard.right().onPressDo{player.derecha()}
 		keyboard.r().onPressDo{self.reiniciar()}
+	}
+	
+	method ejecutarPJ() {
+		//game.onTick(23000,"",{game.removeVisual(enemigo1)})
+		game.onTick(24000,"",{enemigo1.iniciar()})
+//		game.onTick(2000, "movimiento", { enemigo1.moverse() })
 	}
 	
 	method terminar() {
@@ -130,9 +138,10 @@ object win {
 
 
 object enemigo1 {
-	const posicionInicial = game.at(0,2)
+	const posicionInicial = game.at(0,1)
 	var position = posicionInicial
 	var property image = "Imagenes/Jugador3a.png"
+	var property vivo = false
 	
 	method image() = image
 	
@@ -143,7 +152,15 @@ object enemigo1 {
 	}
 	
 	method moverse() {
-		position = position.up(1)
+			position = position.up(1)	
+	}
+	
+	method iniciar() {
+		position = posicionInicial
+		/*if (!vivo) {
+			game.addVisual(self)
+			vivo = true
+		}*/
 	}
 }
 
