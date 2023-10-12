@@ -232,11 +232,14 @@ object enemigo8 {
 	
 	method moverse() {
 		position = position.up(1)
+		position = position.left(1)
 
 	}
 	
 	method iniciar() {
-		position = posicionInicial
+		const y = 0.randomUpTo(7)
+		position = game.at(8,y)
+		
 	}
 }
 
