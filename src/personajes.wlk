@@ -80,6 +80,10 @@ object enemigo1 {
 	method iniciar() {
 		position = posicionInicial
 	}
+	
+	method reiniciar() {
+		position = posicionInicial
+	}
 }
 
 object enemigo2 {
@@ -104,6 +108,10 @@ object enemigo2 {
 		const y = 0.randomUpTo(7)
 		position = game.at(0,y)
 	}
+	
+	method reiniciar() {
+		position = posicionInicial
+	}
 }
 
 object enemigo3 {
@@ -124,6 +132,10 @@ object enemigo3 {
 	}
 	
 	method iniciar() {
+		position = posicionInicial
+	}
+	
+	method reiniciar() {
 		position = posicionInicial
 	}
 }
@@ -148,6 +160,10 @@ object enemigo4 {
 	method iniciar() {
 		position = posicionInicial
 	}
+	
+	method reiniciar() {
+		position = posicionInicial
+	}
 }
 
 object enemigo5 {
@@ -168,6 +184,10 @@ object enemigo5 {
 	}
 	
 	method iniciar() {
+		position = posicionInicial
+	}
+	
+	method reiniciar() {
 		position = posicionInicial
 	}
 }
@@ -192,6 +212,10 @@ object enemigo6 {
 	method iniciar() {
 		position = posicionInicial
 	}
+	
+	method reiniciar() {
+		position = posicionInicial
+	}
 }
 
 object enemigo7 {
@@ -213,6 +237,10 @@ object enemigo7 {
 	}
 	
 	method iniciar() {
+		position = posicionInicial
+	}
+	
+	method reiniciar() {
 		position = posicionInicial
 	}
 }
@@ -240,6 +268,10 @@ object enemigo8 {
 		const y = 0.randomUpTo(7)
 		position = game.at(8,y)
 		
+	}
+	
+	method reiniciar() {
+		position = posicionInicial
 	}
 }
 

@@ -23,7 +23,7 @@ object juego{
 	}
 	
 	method iniciar() {
-		var final = [new Position(x=0,y=1),new Position(x=1,y=1),new Position(x=2,y=1),new Position(x=3,y=1),new Position(x=4,y=1),new Position(x=5,y=1)].map{p=> self.dibujar(new Final(position = p))}
+		var final = [new Position(x=0,y=1),new Position(x=1,y=1),new Position(x=2,y=1),new Position(x=3,y=1),new Position(x=4,y=1),new Position(x=5,y=1),new Position(x=6,y=1),new Position(x=7,y=1),new Position(x=8,y=1)].map{p=> self.dibujar(new Final(position = p))}
 		game.addVisual(pjuego)
 		game.addVisual(player)
 		game.schedule(1000,{game.addVisual(enemigo1)})
@@ -66,7 +66,6 @@ object juego{
 	}
 	
 	method ejecutarPJ() {
-		//game.onTick(23000,"",{game.removeVisual(enemigo1)})
 		game.onTick(24000,"",{enemigo1.iniciar()})
 		game.onTick(4000,"",{enemigo2.iniciar()})
 		game.onTick(14000,"",{enemigo3.iniciar()})
@@ -75,24 +74,47 @@ object juego{
 		game.onTick(14000,"",{enemigo6.iniciar()})
 		game.onTick(15000,"",{enemigo7.iniciar()})
 		game.onTick(4800,"",{enemigo8.iniciar()})
-//		game.onTick(2000, "movimiento", { enemigo1.moverse() })
 	}
 	
 	method terminar() {
 		game.addVisual(win)
 		game.removeVisual(player)
+		game.removeVisual(enemigo1)
+		game.removeVisual(enemigo2)
+		game.removeVisual(enemigo3)
+		game.removeVisual(enemigo4)
+		game.removeVisual(enemigo5)
+		game.removeVisual(enemigo6)
+		game.removeVisual(enemigo7)
+		game.removeVisual(enemigo8)
 	}
 	
 	method reiniciar() {
-		game.removeVisual(win)
-		game.removeVisual(gameOver)
+		//game.removeVisual(win)
+		//game.removeVisual(gameOver)
 		game.clear()
+		enemigo1.reiniciar()
+		enemigo2.reiniciar()
+		enemigo3.reiniciar()
+		enemigo4.reiniciar()
+		enemigo5.reiniciar()
+		enemigo6.reiniciar()
+		enemigo7.reiniciar()
+		enemigo8.reiniciar()
 		self.iniciar()
 	}
 	
 	method gameOver() {
 		game.addVisual(gameOver)
 		game.removeVisual(player)
+		game.removeVisual(enemigo1)
+		game.removeVisual(enemigo2)
+		game.removeVisual(enemigo3)
+		game.removeVisual(enemigo4)
+		game.removeVisual(enemigo5)
+		game.removeVisual(enemigo6)
+		game.removeVisual(enemigo7)
+		game.removeVisual(enemigo8)
 	}
 }
 
