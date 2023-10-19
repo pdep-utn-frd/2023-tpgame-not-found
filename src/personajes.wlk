@@ -303,7 +303,11 @@ class Limite {
 	method position() = position
 	
 	method chocar() {
-		game.say(player,"jujuu")
+		if (player.position().x() < 3) {
+		player.derecha()
+		} else {
+			player.izquierda()
+		}
 	}
 	
 }

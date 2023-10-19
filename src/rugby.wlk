@@ -28,33 +28,10 @@ object juego{
 		game.addVisual(player)
 		var enemigos = new Enemigo(position = game.at(2,2),image = "Imagenes/Jugador3a.png")
 		//game.addVisual(enemigos)
-		const limites = [new Position(x=-1,y=4)].map{p=> self.dibujar(new Limite(position = p))}
-		//game.onCollideDo(limites,{personajes => game.say(limites,"Cuidado viejoo")})
-		/*game.schedule(1000,{game.addVisual(enemigo1)})
-		game.schedule(1500,{game.addVisual(enemigo2)})
-		game.schedule(1250,{game.addVisual(enemigo3)})
-		game.schedule(1700,{game.addVisual(enemigo4)})
-		game.schedule(3000,{game.addVisual(enemigo5)})
-		game.schedule(2200,{game.addVisual(enemigo6)})
-		game.schedule(2500,{game.addVisual(enemigo7)})
-		game.schedule(500,{game.addVisual(enemigo8)})*/
-		/*game.onTick(10000,"",{enemigo1.iniciar()})
-		game.onTick(5000,"",{game.addVisual(enemigo2)})
-		game.onTick(7100,"",{game.addVisual(enemigo3)})
-		game.onTick(1800,"",{game.addVisual(enemigo4)})
-		game.onTick(9000,"",{game.addVisual(enemigo5)})
-		game.onTick(15000,"",{game.addVisual(enemigo6)})
-		game.onTick(20000,"",{game.addVisual(enemigo7)})
-		game.onTick(5000,"",{game.addVisual(enemigo8)})*/
+		const limites = [new Position(x=-1,y=0),new Position(x=-1,y=1),new Position(x=-1,y=2),new Position(x=-1,y=3),new Position(x=-1,y=4),new Position(x=-1,y=5),new Position(x=-1,y=6),new Position(x=-1,y=7),new Position(x=-1,y=8),new Position(x=-1,y=9),new Position(x=-1,y=10),new Position(x=-1,y=11),new Position(x=-1,y=12),new Position(x=-1,y=13),new Position(x=-1,y=14),
+						new Position(x=9,y=0),new Position(x=9,y=1),new Position(x=9,y=2),new Position(x=9,y=3),new Position(x=9,y=4),new Position(x=9,y=5),new Position(x=9,y=6),new Position(x=9,y=7),new Position(x=9,y=8),new Position(x=9,y=9),new Position(x=9,y=10),new Position(x=9,y=11),new Position(x=9,y=12),new Position(x=9,y=13),new Position(x=9,y=14)
+						].map{p=> self.dibujar(new Limite(position = p))}
 		game.onCollideDo(player,{ obstaculo => obstaculo.chocar()})
-		game.onTick(1300, "movimiento", { enemigo1.moverse() })
-		game.onTick(500, "movimiento", { enemigo2.moverse() })
-		game.onTick(600, "movimiento", { enemigo3.moverse() })
-		game.onTick(300, "movimiento", { enemigo4.moverse() })
-		game.onTick(900, "movimiento", { enemigo5.moverse() })
-		game.onTick(800, "movimiento", { enemigo6.moverse() })	
-		game.onTick(1100, "movimiento", { enemigo7.moverse() })
-		game.onTick(400, "movimiento", { enemigo8.moverse() })
 		game.onTick(400, "movimiento", { enemigos.moverse() })
 		self.ejecutarPJ()
 		self.configurarControles()
@@ -84,14 +61,6 @@ object juego{
 	method terminar() {
 		game.addVisual(win)
 		game.removeVisual(player)
-		game.removeVisual(enemigo1)
-		game.removeVisual(enemigo2)
-		game.removeVisual(enemigo3)
-		game.removeVisual(enemigo4)
-		game.removeVisual(enemigo5)
-		game.removeVisual(enemigo6)
-		game.removeVisual(enemigo7)
-		game.removeVisual(enemigo8)
 	}
 	
 	method reiniciar() {
