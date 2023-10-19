@@ -62,7 +62,7 @@ object win {
 
 object enemigo1 {
 	const posicionInicial = game.at(0,1)
-	var position = posicionInicial
+	var property position = posicionInicial
 	var property image = "Imagenes/Jugador3a.png"
 	
 	method image() = image
@@ -261,7 +261,6 @@ object enemigo8 {
 	method moverse() {
 		position = position.up(1)
 		position = position.left(1)
-
 	}
 	
 	method iniciar() {
@@ -275,7 +274,36 @@ object enemigo8 {
 	}
 }
 
+class Enemigo {
+	var property position
+	var property image
+	
+	method image() = image
+	
+	method position()= position
+	
+	method chocar() {
+		juego.gameOver()
+	}
+	
+	method moverse() {
+		position = position.up(1)
+		position = position.left(1)
+	}
+}
+
 object gameOver {
 	method position() = game.at(1,5)
 	method image() = "Imagenes/Game Over2.png"
 } 
+
+class Limite {
+	var property position
+	
+	method position() = position
+	
+	method chocar() {
+		game.say(player,"jujuu")
+	}
+	
+}

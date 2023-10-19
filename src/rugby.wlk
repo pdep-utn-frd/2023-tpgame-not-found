@@ -26,14 +26,18 @@ object juego{
 		var final = [new Position(x=0,y=1),new Position(x=1,y=1),new Position(x=2,y=1),new Position(x=3,y=1),new Position(x=4,y=1),new Position(x=5,y=1),new Position(x=6,y=1),new Position(x=7,y=1),new Position(x=8,y=1)].map{p=> self.dibujar(new Final(position = p))}
 		game.addVisual(pjuego)
 		game.addVisual(player)
-		game.schedule(1000,{game.addVisual(enemigo1)})
+		var enemigos = new Enemigo(position = game.at(2,2),image = "Imagenes/Jugador3a.png")
+		//game.addVisual(enemigos)
+		const limites = [new Position(x=-1,y=4)].map{p=> self.dibujar(new Limite(position = p))}
+		//game.onCollideDo(limites,{personajes => game.say(limites,"Cuidado viejoo")})
+		/*game.schedule(1000,{game.addVisual(enemigo1)})
 		game.schedule(1500,{game.addVisual(enemigo2)})
 		game.schedule(1250,{game.addVisual(enemigo3)})
 		game.schedule(1700,{game.addVisual(enemigo4)})
 		game.schedule(3000,{game.addVisual(enemigo5)})
 		game.schedule(2200,{game.addVisual(enemigo6)})
 		game.schedule(2500,{game.addVisual(enemigo7)})
-		game.schedule(500,{game.addVisual(enemigo8)})
+		game.schedule(500,{game.addVisual(enemigo8)})*/
 		/*game.onTick(10000,"",{enemigo1.iniciar()})
 		game.onTick(5000,"",{game.addVisual(enemigo2)})
 		game.onTick(7100,"",{game.addVisual(enemigo3)})
@@ -51,6 +55,7 @@ object juego{
 		game.onTick(800, "movimiento", { enemigo6.moverse() })	
 		game.onTick(1100, "movimiento", { enemigo7.moverse() })
 		game.onTick(400, "movimiento", { enemigo8.moverse() })
+		game.onTick(400, "movimiento", { enemigos.moverse() })
 		self.ejecutarPJ()
 		self.configurarControles()
 
