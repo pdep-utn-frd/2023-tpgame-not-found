@@ -276,19 +276,24 @@ object enemigo8 {
 
 class Enemigo {
 	var property position
-	var property image
+	var property image = "Imagenes/Jugador3a.png"
+	var property opciones = ['left','right']
+	var x = ''
 	
-	method image() = image
-	
-	method position()= position
+	method position() = position
 	
 	method chocar() {
 		juego.gameOver()
 	}
 	
 	method moverse() {
+		x = opciones.anyOne()
 		position = position.up(1)
-		position = position.left(1)
+		if (x == 'left') {
+          position = position.left(1)
+        } else {
+           position = position.right(1)
+        }
 	}
 }
 
@@ -310,4 +315,35 @@ class Limite {
 		}
 	}
 	
+}
+
+object reloj {
+	
+	var property tiempo = 100
+	var property punt = 0
+	var property  tiemReloj= 0
+	
+	method text() = tiempo.toString()
+	method position() = game.at(1, game.height()-1)
+	method textColor() = "ff0000"
+	
+	
+	
+	method pasarTiempo() {
+		if (tiempo > 0) {
+		tiempo = tiempo -1
+	} else {
+		juego.gameOver()
+		self.detener()
+		}
+	}
+	
+	method iniciar(){
+		tiempo = 100
+		game.onTick(70,"tiempo",{self.pasarTiempo()})
+	}
+	
+	method detener(){
+		game.removeTickEvent("tiempo")
+	}	
 }
