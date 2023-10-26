@@ -36,7 +36,7 @@ object player {
 //PANTALLA DE INICIO
 object inicio {
 	method position() = game.at(0,0)
-	method image() = "Imagenes/Inicio2.jpg"
+	method image() = "Imagenes/Inicio.jpg"
 }
 
 // PANTALLA DEL JUEGO

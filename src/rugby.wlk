@@ -29,7 +29,6 @@ object juego{
 		game.addVisual(player)
 		game.addVisual(reloj)
 		reloj.iniciar()
-		// Realizar metodo que inicialize todos los enemigos de una
 		// Realizar un onTick o funcion cada vez que choquen volver a iniciarlo
 		self.iniciarEnemigos()
 		enemigos.forEach{enemigo=>game.addVisual(enemigo)}

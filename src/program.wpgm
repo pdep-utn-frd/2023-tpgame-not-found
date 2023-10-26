@@ -6,4 +6,4 @@ program juegos {
 	
 	juego.configurar()
 	game.start()
-} 
+}
