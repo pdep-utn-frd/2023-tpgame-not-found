@@ -20,6 +20,7 @@ object juego{
 	
 	method removerInicio() {
 		game.removeVisual(inicio)
+		self.iniciarEnemigos()
 		self.iniciar()
 	}
 	
@@ -30,7 +31,6 @@ object juego{
 		game.addVisual(reloj)
 		reloj.iniciar()
 		// Realizar un onTick o funcion cada vez que choquen volver a iniciarlo
-		self.iniciarEnemigos()
 		enemigos.forEach{enemigo=>game.addVisual(enemigo)}
 		//var enemigos = [new Position(x=2,y=2),new Position(x=3,y=2),new Position(x=4,y=2),new Position(x=5,y=2),new Position(x=6,y=2),new Position(x=7,y=2),new Position(x=8,y=2),new Position(x=9,y=2)].map{p=> self.dibujar(new Enemigo(position = p))}
 		const limites = [new Position(x=-1,y=0),new Position(x=-1,y=1),new Position(x=-1,y=2),new Position(x=-1,y=3),new Position(x=-1,y=4),new Position(x=-1,y=5),new Position(x=-1,y=6),new Position(x=-1,y=7),new Position(x=-1,y=8),new Position(x=-1,y=9),new Position(x=-1,y=10),new Position(x=-1,y=11),new Position(x=-1,y=12),new Position(x=-1,y=13),new Position(x=-1,y=14),
@@ -38,6 +38,7 @@ object juego{
 						].map{p=> self.dibujar(new Limite(position = p))}
 		game.onCollideDo(player,{ obstaculo => obstaculo.chocar()})
 		game.onTick(400, "movimiento", { enemigos.forEach{enemigo=>enemigo.moverse()}})
+		game.onTick(5000, "Regeneracion", { enemigos.forEach{enemigo=>enemigo.reiniciar()}})
 		//self.ejecutarPJ()
 		self.configurarControles()
 
@@ -71,14 +72,7 @@ object juego{
 	
 	method reiniciar() {
 		game.clear()
-		enemigo1.reiniciar()
-		enemigo2.reiniciar()
-		enemigo3.reiniciar()
-		enemigo4.reiniciar()
-		enemigo5.reiniciar()
-		enemigo6.reiniciar()
-		enemigo7.reiniciar()
-		enemigo8.reiniciar()
+		enemigos.forEach{enemigo=>enemigo.reiniciar()}
 		self.iniciar()
 	}
 	
@@ -86,16 +80,17 @@ object juego{
 		reloj.detener()
 		game.addVisual(gameOver)
 		game.removeVisual(player)
+		enemigos.forEach{enemigo=>game.removeVisual(enemigo)}
 	}
 	
 	method iniciarEnemigos() {
-		enemigos.add(new Enemigo(position = game.at(2,2)))
-		enemigos.add(new Enemigo(position = game.at(3,2)))
-		enemigos.add(new Enemigo(position = game.at(4,2)))
-		enemigos.add(new Enemigo(position = game.at(5,2)))
-		enemigos.add(new Enemigo(position = game.at(6,2)))
-		enemigos.add(new Enemigo(position = game.at(7,2)))
-		enemigos.add(new Enemigo(position = game.at(8,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(2,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(3,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(4,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(5,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(6,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(7,2)))
+		enemigos.add(new Enemigo(positionInicial = game.at(8,2)))
 	}
 }
 

@@ -55,227 +55,13 @@ class Final {
 }
 
 object win {
-	method position() = game.at(1,5)
-	method image() = "Imagenes/Win2.png"
-}
-
-
-object enemigo1 {
-	const posicionInicial = game.at(0,1)
-	var property position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-			position = position.up(1)	
-	}
-	
-	method iniciar() {
-		position = posicionInicial
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo2 {
-	const posicionInicial = game.at(1,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-		position = position.right(1)
-	}
-	
-	method iniciar() {
-		const y = 0.randomUpTo(7)
-		position = game.at(0,y)
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo3 {
-	const posicionInicial = game.at(2,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-	}
-	
-	method iniciar() {
-		position = posicionInicial
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo4 {
-	const posicionInicial = game.at(3,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-	}
-	
-	method iniciar() {
-		position = posicionInicial
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo5 {
-	const posicionInicial = game.at(4,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-	}
-	
-	method iniciar() {
-		position = posicionInicial
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo6 {
-	const posicionInicial = game.at(5,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-	}
-	
-	method iniciar() {
-		position = posicionInicial
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo7 {
-	const posicionInicial = game.at(6,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-		
-	}
-	
-	method iniciar() {
-		position = posicionInicial
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
-}
-
-object enemigo8 {
-	const posicionInicial = game.at(7,2)
-	var position = posicionInicial
-	var property image = "Imagenes/Jugador3a.png"
-	
-	method image() = image
-	
-	method position()= position
-	
-	method chocar() {
-		juego.gameOver()
-	}
-	
-	method moverse() {
-		position = position.up(1)
-		position = position.left(1)
-	}
-	
-	method iniciar() {
-		const y = 0.randomUpTo(7)
-		position = game.at(8,y)
-		
-	}
-	
-	method reiniciar() {
-		position = posicionInicial
-	}
+	method position() = game.at(1,3)
+	method image() = "Imagenes/Win.png"
 }
 
 class Enemigo {
-	var property position
+	var property positionInicial
+	var property position = positionInicial
 	var property image = "Imagenes/Jugador3a.png"
 	var property opciones = ['left','right']
 	var x = ''
@@ -289,17 +75,17 @@ class Enemigo {
 	method moverse() {
 		x = opciones.anyOne()
 		position = position.up(1)
-		if (x == 'left') {
-          position = position.left(1)
-        } else {
-           position = position.right(1)
-        }
+		position = position.right((-1).randomUpTo(2))
+	}
+	
+	method reiniciar() {
+		position = positionInicial
 	}
 }
 
 object gameOver {
-	method position() = game.at(1,5)
-	method image() = "Imagenes/Game Over2.png"
+	method position() = game.at(1,4)
+	method image() = "Imagenes/Game Over.png"
 } 
 
 class Limite {
