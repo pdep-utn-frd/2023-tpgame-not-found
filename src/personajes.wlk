@@ -63,8 +63,6 @@ class Enemigo {
 	var property positionInicial
 	var property position = positionInicial
 	var property image = "Imagenes/Jugador3a.png"
-	var property opciones = ['left','right']
-	var x = ''
 	
 	method position() = position
 	
@@ -73,7 +71,6 @@ class Enemigo {
 	}
 	
 	method moverse() {
-		x = opciones.anyOne()
 		position = position.up(1)
 		position = position.right((-1).randomUpTo(2))
 	}
@@ -106,13 +103,10 @@ class Limite {
 object reloj {
 	
 	var property tiempo = 100
-	var property punt = 0
-	var property  tiemReloj= 0
 	
 	method text() = tiempo.toString()
 	method position() = game.at(1, game.height()-1)
-	method textColor() = "ff0000"
-	
+	method textColor() = "ffffff"
 	
 	
 	method pasarTiempo() {
@@ -120,7 +114,6 @@ object reloj {
 		tiempo = tiempo -1
 	} else {
 		juego.gameOver()
-		self.detener()
 		}
 	}
 	

@@ -8,7 +8,7 @@ object juego{
 		game.height(14)
 		game.width(9)
 		game.addVisual(inicio)
-		game.title("Rugby Game")	
+		game.title("Rugby Game")
 		
 		keyboard.enter().onPressDo{self.removerInicio()}
 	}
@@ -30,16 +30,13 @@ object juego{
 		game.addVisual(player)
 		game.addVisual(reloj)
 		reloj.iniciar()
-		// Realizar un onTick o funcion cada vez que choquen volver a iniciarlo
 		enemigos.forEach{enemigo=>game.addVisual(enemigo)}
-		//var enemigos = [new Position(x=2,y=2),new Position(x=3,y=2),new Position(x=4,y=2),new Position(x=5,y=2),new Position(x=6,y=2),new Position(x=7,y=2),new Position(x=8,y=2),new Position(x=9,y=2)].map{p=> self.dibujar(new Enemigo(position = p))}
 		const limites = [new Position(x=-1,y=0),new Position(x=-1,y=1),new Position(x=-1,y=2),new Position(x=-1,y=3),new Position(x=-1,y=4),new Position(x=-1,y=5),new Position(x=-1,y=6),new Position(x=-1,y=7),new Position(x=-1,y=8),new Position(x=-1,y=9),new Position(x=-1,y=10),new Position(x=-1,y=11),new Position(x=-1,y=12),new Position(x=-1,y=13),new Position(x=-1,y=14),
 						new Position(x=9,y=0),new Position(x=9,y=1),new Position(x=9,y=2),new Position(x=9,y=3),new Position(x=9,y=4),new Position(x=9,y=5),new Position(x=9,y=6),new Position(x=9,y=7),new Position(x=9,y=8),new Position(x=9,y=9),new Position(x=9,y=10),new Position(x=9,y=11),new Position(x=9,y=12),new Position(x=9,y=13),new Position(x=9,y=14)
 						].map{p=> self.dibujar(new Limite(position = p))}
 		game.onCollideDo(player,{ obstaculo => obstaculo.chocar()})
 		game.onTick(400, "movimiento", { enemigos.forEach{enemigo=>enemigo.moverse()}})
 		game.onTick(5000, "Regeneracion", { enemigos.forEach{enemigo=>enemigo.reiniciar()}})
-		//self.ejecutarPJ()
 		self.configurarControles()
 
 		player.iniciar()
@@ -53,16 +50,6 @@ object juego{
 		keyboard.r().onPressDo{self.reiniciar()}
 	}
 	
-	/*method ejecutarPJ() {
-		game.onTick(24000,"",{enemigo1.iniciar()})
-		game.onTick(4000,"",{enemigo2.iniciar()})
-		game.onTick(14000,"",{enemigo3.iniciar()})
-		game.onTick(14000,"",{enemigo4.iniciar()})
-		game.onTick(14000,"",{enemigo5.iniciar()})
-		game.onTick(14000,"",{enemigo6.iniciar()})
-		game.onTick(15000,"",{enemigo7.iniciar()})
-		game.onTick(4800,"",{enemigo8.iniciar()})
-	}*/
 	
 	method terminar() {
 		game.addVisual(win)
@@ -84,6 +71,7 @@ object juego{
 	}
 	
 	method iniciarEnemigos() {
+		enemigos.add(new Enemigo(positionInicial = game.at(1,2)))
 		enemigos.add(new Enemigo(positionInicial = game.at(2,2)))
 		enemigos.add(new Enemigo(positionInicial = game.at(3,2)))
 		enemigos.add(new Enemigo(positionInicial = game.at(4,2)))
