@@ -3,11 +3,33 @@ import rugby.*
 import personajes.*
 
 class PowerUps{
+	var property position = game.at(1,9)
 	
-	var property velocidad = 0
-	var property position = game.at(game.width()-3,game.height()-1)
+	method generar() {
+		if (!game.hasVisual(self))
+		game.addVisual(self)
+	}
 	
-	//method chocar
-		
+	method chocar() {
+		game.removeVisual(self)
+	}
 		 
+}
+
+class Reloj inherits PowerUps {
+	var property image = "Imagenes/Reloj.png"
+	
+	override method chocar() {
+		super()
+		reloj.sumarTiempo()
+	}
+}
+
+class Ralentizar inherits PowerUps {
+	var property image = "Imagenes/moco2.png"
+	
+	override method chocar() {
+		super()
+		// Diseñar movimiento mas lento de los enemigos
+	}
 }

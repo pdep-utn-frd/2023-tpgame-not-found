@@ -31,6 +31,7 @@ object player {
 	method derecha(){
 		position = position.right(1)
 	}
+
 }
 
 //PANTALLA DE INICIO
@@ -108,7 +109,6 @@ object reloj {
 	method position() = game.at(1, game.height()-1)
 	method textColor() = "ffffff"
 	
-	
 	method pasarTiempo() {
 		if (tiempo > 0) {
 		tiempo = tiempo -1
@@ -124,5 +124,9 @@ object reloj {
 	
 	method detener(){
 		game.removeTickEvent("tiempo")
+	}
+	
+	method sumarTiempo() {
+		tiempo += 25
 	}	
 }

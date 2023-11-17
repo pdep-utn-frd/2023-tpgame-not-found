@@ -1,8 +1,12 @@
 import wollok.game.*
 import personajes.*
+import PowerUps.*
 
 object juego{
 	var enemigos = []
+	var property powerups = []
+	const powerupsPosibles = [new Reloj(),new Ralentizar()]
+
 
 	method configurar(){
 		game.height(14)
@@ -37,6 +41,7 @@ object juego{
 		game.onCollideDo(player,{ obstaculo => obstaculo.chocar()})
 		game.onTick(400, "movimiento", { enemigos.forEach{enemigo=>enemigo.moverse()}})
 		game.onTick(5000, "Regeneracion", { enemigos.forEach{enemigo=>enemigo.reiniciar()}})
+		game.onTick(2000,"GenPowerup",{powerupsPosibles.anyOne().generar()})
 		self.configurarControles()
 
 		player.iniciar()
