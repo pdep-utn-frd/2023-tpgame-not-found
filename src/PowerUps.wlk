@@ -27,9 +27,18 @@ class Reloj inherits PowerUps {
 
 class Ralentizar inherits PowerUps {
 	var property image = "Imagenes/moco2.png"
+ 	override method chocar() {
+		super()
+		juego.reducirVelocidadEnemigos()
+	}
+
+}
+
+class Dash inherits PowerUps {
+	var property image = "Imagenes/dash.png"
 	
 	override method chocar() {
 		super()
-		// Diseñar movimiento mas lento de los enemigos
+	    player.dash()	
 	}
 }

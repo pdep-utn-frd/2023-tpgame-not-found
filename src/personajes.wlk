@@ -31,7 +31,10 @@ object player {
 	method derecha(){
 		position = position.right(1)
 	}
-
+	
+	method dash(){
+		position = position.down(4)
+	}
 }
 
 //PANTALLA DE INICIO
