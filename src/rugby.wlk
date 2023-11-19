@@ -5,7 +5,6 @@ import PowerUps.*
 object juego{
 	var estaEnPausa = false
 	var enemigos = []
-	var property powerups = []
 	const powerupsPosibles = [new Reloj(),new Ralentizar(),new Dash()]
 	
 
@@ -34,6 +33,12 @@ object juego{
 		game.onTick(300, "movimiento", { enemigos.forEach{enemigo=>enemigo.moverse()}})
 		game.onTick(5000, "Regeneracion", { enemigos.forEach{enemigo=>enemigo.reiniciar()}})
 		game.onTick(2000,"GenPowerup",{powerupsPosibles.anyOne().generar()})
+	}
+	
+	method terminarEventos(){
+		game.removeTickEvent("movimiento")
+		game.removeTickEvent("Regeneracion")
+		game.removeTickEvent("GenPowerup")
 	}
 	
 	method iniciar() {
@@ -67,9 +72,8 @@ object juego{
 	
 	method pausa() {
 		estaEnPausa = true
-		game.removeTickEvent("movimiento")
-		game.removeTickEvent("Regeneracion")
-		game.removeTickEvent("GenPowerup")
+		game.addVisual(pause)
+		self.terminarEventos()
 		reloj.detener()
 	}
 	
@@ -87,8 +91,11 @@ object juego{
 	
 	method terminar() {
 		game.addVisual(win)
+		self.terminarEventos()
 		game.removeVisual(player)
 		reloj.detener()
+		enemigos.forEach{enemigo=>game.removeVisual(enemigo)}
+		powerupsPosibles.forEach{powerup =>if(game.hasVisual(powerup)) game.removeVisual(powerup)}
 		//game.sound("Sonidos/Ambiente.mp3").pause()
 		game.sound("Sonidos/Gol.mp3").play()
 	}
@@ -101,9 +108,11 @@ object juego{
 	
 	method gameOver() {
 		reloj.detener()
+		self.terminarEventos()
 		game.addVisual(gameOver)
 		game.removeVisual(player)
 		enemigos.forEach{enemigo=>game.removeVisual(enemigo)}
+		powerupsPosibles.forEach{powerup =>if(game.hasVisual(powerup)) game.removeVisual(powerup)}
 		//game.sound("Sonidos/Ambiente.mp3").pause()
 		game.sound("Sonidos/GameOver.mp3").play()
 	}

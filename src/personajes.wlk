@@ -142,3 +142,8 @@ object reloj {
 		tiempo += 25
 	}	
 }
+
+object pause {
+	const property position = game.at(6,12)
+	const property image = "Imagenes/pause.png"
+}
