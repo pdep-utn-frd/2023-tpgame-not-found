@@ -3,11 +3,12 @@ import rugby.*
 import personajes.*
 
 class PowerUps{
-	var property position = game.at(1,9)
+	var property position = game.at(1.randomUpTo(8),3.randomUpTo(11))
 	
 	method generar() {
 		if (!game.hasVisual(self))
 		game.addVisual(self)
+		position = game.at(1.randomUpTo(8),3.randomUpTo(11))
 	}
 	
 	method chocar() {
@@ -22,6 +23,7 @@ class Reloj inherits PowerUps {
 	override method chocar() {
 		super()
 		reloj.sumarTiempo()
+		game.sound("Sonidos/Tiempo.mp3").play()
 	}
 }
 
@@ -30,6 +32,7 @@ class Ralentizar inherits PowerUps {
  	override method chocar() {
 		super()
 		juego.reducirVelocidadEnemigos()
+		game.sound("Sonidos/Ralentizo.mp3").play()
 	}
 
 }
@@ -39,6 +42,7 @@ class Dash inherits PowerUps {
 	
 	override method chocar() {
 		super()
-	    player.dash()	
+	    player.dash()
+	    game.sound("Sonidos/Dash.mp3").play()
 	}
 }

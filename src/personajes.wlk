@@ -41,6 +41,10 @@ object player {
 object inicio {
 	method position() = game.at(0,0)
 	method image() = "Imagenes/Inicio.jpg"
+	
+	method play(){
+		game.sound("Inicio.mp3").play()
+	}
 }
 
 // PANTALLA DEL JUEGO
