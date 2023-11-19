@@ -99,11 +99,14 @@ class Limite {
 	method position() = position
 	
 	method chocar() {
+		if (player.position().y() > 12) {
+			player.bajar()}
+		if (player.position().y() < 2) {
+			player.subir()}
 		if (player.position().x() < 3) {
 		player.derecha()
 		} else {
-			player.izquierda()
-		}
+			player.izquierda()}
 	}
 	
 }
@@ -111,7 +114,9 @@ class Limite {
 object reloj {
 	
 	var property tiempo = 100
-	
+	method chocar() {
+		player.bajar()
+	}
 	method text() = tiempo.toString()
 	method position() = game.at(1, game.height()-1)
 	method textColor() = "ffffff"

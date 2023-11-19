@@ -3,9 +3,11 @@ import personajes.*
 import PowerUps.*
 
 object juego{
+	var estaEnPausa = false
 	var enemigos = []
 	var property powerups = []
 	const powerupsPosibles = [new Reloj(),new Ralentizar(),new Dash()]
+	
 
 	method configurar(){
 		game.height(14)
@@ -28,6 +30,12 @@ object juego{
 		self.iniciar()
 	}
 	
+	method iniciarEventos(){
+		game.onTick(300, "movimiento", { enemigos.forEach{enemigo=>enemigo.moverse()}})
+		game.onTick(5000, "Regeneracion", { enemigos.forEach{enemigo=>enemigo.reiniciar()}})
+		game.onTick(2000,"GenPowerup",{powerupsPosibles.anyOne().generar()})
+	}
+	
 	method iniciar() {
 		game.sound("Sonidos/Ambiente.mp3").play()
 		var final = [new Position(x=0,y=1),new Position(x=1,y=1),new Position(x=2,y=1),new Position(x=3,y=1),new Position(x=4,y=1),new Position(x=5,y=1),new Position(x=6,y=1),new Position(x=7,y=1),new Position(x=8,y=1)].map{p=> self.dibujar(new Final(position = p))}
@@ -36,13 +44,12 @@ object juego{
 		game.addVisual(reloj)
 		reloj.iniciar()
 		enemigos.forEach{enemigo=>game.addVisual(enemigo)}
-		const limites = [new Position(x=-1,y=0),new Position(x=-1,y=1),new Position(x=-1,y=2),new Position(x=-1,y=3),new Position(x=-1,y=4),new Position(x=-1,y=5),new Position(x=-1,y=6),new Position(x=-1,y=7),new Position(x=-1,y=8),new Position(x=-1,y=9),new Position(x=-1,y=10),new Position(x=-1,y=11),new Position(x=-1,y=12),new Position(x=-1,y=13),new Position(x=-1,y=14),
-						new Position(x=9,y=0),new Position(x=9,y=1),new Position(x=9,y=2),new Position(x=9,y=3),new Position(x=9,y=4),new Position(x=9,y=5),new Position(x=9,y=6),new Position(x=9,y=7),new Position(x=9,y=8),new Position(x=9,y=9),new Position(x=9,y=10),new Position(x=9,y=11),new Position(x=9,y=12),new Position(x=9,y=13),new Position(x=9,y=14)
-						].map{p=> self.dibujar(new Limite(position = p))}
+		const limites = [new Position(x=0,y=13),new Position(x=13,y=13),new Position(x=2,y=13),new Position(x=3,y=13),new Position(x=4,y=13),new Position(x=5,y=13),new Position(x=6,y=13),new Position(x=7,y=13),new Position(x=8,y=13),
+						new Position(x=-1,y=0),new Position(x=-1,y=1),new Position(x=-1,y=2),new Position(x=-1,y=3),new Position(x=-1,y=4),new Position(x=-1,y=5),new Position(x=-1,y=6),new Position(x=-1,y=7),new Position(x=-1,y=8),new Position(x=-1,y=9),new Position(x=-1,y=10),new Position(x=-1,y=11),new Position(x=-1,y=12),new Position(x=-1,y=13),new Position(x=-1,y=14),
+						new Position(x=9,y=0),new Position(x=9,y=1),new Position(x=9,y=2),new Position(x=9,y=3),new Position(x=9,y=4),new Position(x=9,y=5),new Position(x=9,y=6),new Position(x=9,y=7),new Position(x=9,y=8),new Position(x=9,y=9),new Position(x=9,y=10),new Position(x=9,y=11),new Position(x=9,y=12),new Position(x=9,y=13),new Position(x=9,y=14),
+						new Position(x=0,y=0),new Position(x=1,y=0),new Position(x=2,y=0),new Position(x=3,y=0),new Position(x=4,y=0),new Position(x=5,y=0),new Position(x=6,y=0),new Position(x=7,y=0),new Position(x=8,y=0)].map{p=> self.dibujar(new Limite(position = p))}
 		game.onCollideDo(player,{ obstaculo => obstaculo.chocar()})
-		game.onTick(300, "movimiento", { enemigos.forEach{enemigo=>enemigo.moverse()}})
-		game.onTick(5000, "Regeneracion", { enemigos.forEach{enemigo=>enemigo.reiniciar()}})
-		game.onTick(2000,"GenPowerup",{powerupsPosibles.anyOne().generar()})
+		self.iniciarEventos()
 		self.configurarControles()
 
 		player.iniciar()
@@ -54,9 +61,29 @@ object juego{
 		keyboard.down().onPressDo{player.bajar()}
 		keyboard.right().onPressDo{player.derecha()}
 		keyboard.r().onPressDo{self.reiniciar()}
-		keyboard.p().onPressDo{self.pausa()}
+		keyboard.p().onPressDo{self.pausar()}
 	}
 	
+	
+	method pausa() {
+		estaEnPausa = true
+		game.removeTickEvent("movimiento")
+		game.removeTickEvent("Regeneracion")
+		game.removeTickEvent("GenPowerup")
+		reloj.detener()
+	}
+	
+	method resume(){
+		estaEnPausa = false
+		self.iniciarEventos()
+		game.onTick(70,"tiempo",{reloj.pasarTiempo()})
+	}
+	method pausar() {
+		if (estaEnPausa)
+			self.resume() else{
+				self.pausa()	
+			}
+		}
 	
 	method terminar() {
 		game.addVisual(win)
@@ -64,10 +91,6 @@ object juego{
 		reloj.detener()
 		//game.sound("Sonidos/Ambiente.mp3").pause()
 		game.sound("Sonidos/Gol.mp3").play()
-	}
-	
-	method pausa() {
-		
 	}
 	
 	method reiniciar() {
