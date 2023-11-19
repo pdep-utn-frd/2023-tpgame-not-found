@@ -23,7 +23,7 @@ object juego{
 		game.addVisual(dibujo)
 		return dibujo
 	}
-	
+
 	method removerInicio() {
 		game.removeVisual(inicio)
 		self.iniciarEnemigos()
