@@ -9,7 +9,7 @@ Pero no será tan fácil, ¡ya que tus oponentes están listos para detenerte a 
 
 Para poder lograr esta hazaña tendremos diferentes **Powerups** que nos ayudaran:
 
-⚡ ¡Imagina correr por el campo esquivando a los defensores con un poderoso Dash!⚡ Este powerup te permite avanzar rápidamente y dejar a tus rivales en el polvo.
+![Imagen](Imagenes/dash.png) ¡Imagina correr por el campo esquivando a los defensores con un poderoso Dash!⚡ Este powerup te permite avanzar rápidamente y dejar a tus rivales en el polvo.
 
 ⏰ El reloj, que te da tiempo adicional para brillar en el campo. ⏰ 
 ¡Aprovéchalo sabiamente y mantén la presión sobre tus oponentes!
