@@ -1,8 +1,8 @@
 # Rugby Game 🏉
 
-##¡🏉Bienvenidos al emocionante mundo del Rugby! 🏉
+## ¡🏉Bienvenidos al emocionante mundo del Rugby! 🏉
 
-[Imagen](Imagenes/Inicio.jpg)
+![Imagen](Imagenes/Inicio.jpg)
 
 En Rugby Game, el objetivo es claro: ¡mete el try en el campo contrario antes de que se agote el tiempo! 🕒 
 Pero no será tan fácil, ¡ya que tus oponentes están listos para detenerte a toda costa! 🏃💨
