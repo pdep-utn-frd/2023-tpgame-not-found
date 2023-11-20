@@ -79,6 +79,7 @@ object juego{
 	
 	method resume(){
 		estaEnPausa = false
+		game.removeVisual(pause)
 		self.iniciarEventos()
 		game.onTick(70,"tiempo",{reloj.pasarTiempo()})
 	}
