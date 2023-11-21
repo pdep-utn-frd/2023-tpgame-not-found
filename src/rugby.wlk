@@ -119,6 +119,7 @@ object juego{
 	}
 	
 	method iniciarEnemigos() {
+		enemigos.add(new Enemigo(positionInicial = game.at(0,2)))
 		enemigos.add(new Enemigo(positionInicial = game.at(1,2)))
 		enemigos.add(new Enemigo(positionInicial = game.at(2,2)))
 		enemigos.add(new Enemigo(positionInicial = game.at(3,2)))
